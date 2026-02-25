@@ -1,0 +1,122 @@
+@media (prefers-reduced-motion) {
+  html {
+    scroll-behavior: none;
+  }
+}
+
+.animated-button-container {
+  --border-width: 2px;
+  --radius: 36px;
+  position: relative;
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+}
+
+.animated-button-container::before {
+  content: ' ';
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  z-index: -1;
+  border: inherit;
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--angle),
+    #0000000d 80%,
+    #252525 88%,
+    #252525 92%,
+    #0000000d 100%
+  );
+  background-origin: border-box;
+  -webkit-mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  mask: linear-gradient(black, black), linear-gradient(black, black);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin 3s linear infinite;
+}
+
+/* @supports not (background: paint(something)) {
+  .animated-button-container::before {
+    background-image: conic-gradient(
+      #0000000d 80%,
+      #252525 88%,
+      #252525 92%,
+      #0000000d 100%
+    );
+  }
+} */
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes spin {
+  to {
+    --angle: 1turn;
+  }
+}
+
+html *,
+html *::after,
+html *::before {
+  box-sizing: inherit;
+}
+
+.animated-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 4px 5px;
+  gap: 24px;
+  width: fit-content;
+}
+
+.book-meeting-button {
+  box-sizing:
+    0px 10px 16px -10px rgba(0, 0, 0, 0.4),
+    0px -1px 0.5px 0px rgba(0, 0, 0, 0.11) inset,
+    0.5px 0.5px 0px 0px rgba(255, 255, 255, 0.24) inset;
+}
+
+.shake-effect:hover,
+.shake-effect:focus,
+.animated-button-container:hover + .shake-effect {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  backface-visibility: hidden;
+  transform-origin: bottom center;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}

@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../styles/swiper.css';
+
+.primary-button-shadow {
+  box-shadow:
+    0px 10px 16px -10px rgba(0, 0, 0, 0.4),
+    0px -1px 0.5px 0px rgba(0, 0, 0, 0.11) inset,
+    0.5px 0.5px 0px 0px rgba(255, 255, 255, 0.24) inset;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+.svg-icon {
+  width: auto;
+  height: auto;
+}
+
+.landing-container {
+  /* background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 29.02%,
+    #f5f5f5 82.89%
+  ); */
+}
+
+.card {
+  box-shadow: 0px 8px 7.9px -4px rgba(226, 226, 226, 0.73);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0px 8px 7.9px 1px rgba(226, 226, 226, 0.83);
+}
+
+.quality-bg {
+  background-image: url('../assets/quality/bg-dots.svg');
+  background-repeat: no-repeat;
+  background-position: center 11%;
+  background-size: contain;
+}
+
+.progress-ring circle {
+  transition: stroke-dashoffset 1s ease-in-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}

@@ -1,0 +1,152 @@
+{
+  "common": {
+    "website": "Website",
+    "back": "Back"
+  },
+  "header": {
+    "title": "Ace Agency",
+    "home": "Home",
+    "projects": "Projects",
+    "members": "Members",
+    "ourTeam": "Our team",
+    "clients": "Clients",
+    "works": "Works",
+    "openForWork": "Open for work",
+    "testimonials": "Testimonials",
+    "services": "Services"
+  },
+  "footer": {
+    "ourWorks": "Our works",
+    "ourTeam": "Our team",
+    "ourServices": "Our services",
+    "contactUs": "Contact Us"
+  },
+  "landing": {
+    "title": "Ace Agency",
+
+    "members": {
+      "title": "Members",
+      "weBuilding": "We building",
+      "withWordClass": "With worldclass Quality.",
+      "description": "At Ace, we don’t just bring your ideas to life—we craft them into unforgettable masterpieces. With our creative edge, you’ll never need to look beyond us.",
+      "getProject": "Get a project quote",
+      "weDesigned": "We designed project raised +$3m funds"
+    },
+    "designedProjects": {
+      "title": "We crafted these masterpieces",
+      "viewProject": "View project"
+    },
+    "works": {
+      "howCanWeBring": "How can we bring your vision to life?",
+      "wereCreative": "We’re creative and trendy\nbecause we never stop evolving.",
+      "transformsIdeas": "transforms ideas into reality.",
+      "description": "Our team of creative professionals and designers delivers the trendiest work. Just take a look at our projects, and you’ll see!",
+      "letsWork": "Let's work ",
+      "designers": "Designers"
+    },
+    "ourFriends": {
+      "title": "Our partners in creativity over the years."
+    },
+    "quality": {
+      "title": "Quality",
+      "weWorkHard": "We work hard to make everything",
+      "qualityTopNotch": "Creative, smart, brilliant!",
+      "creative": "Creative",
+      "smart": "smart",
+      "brilliant": "brilliant",
+      "description": "We go all out to prepare your product with the trendiest styles, the fastest solutions, and the finest user experience. Our creative and professional team is here to deliver nothing but the best results for you."
+    },
+    "comments": {
+      "title": "What Our\nPartners Say",
+      "description": "Hear it straight from the people who’ve worked with us. Honest, inspiring, and real—this is what our partners think about collaborating with us."
+    },
+
+    "customProducts": {
+      "title": "Tailored Solutions for\nStartups & Tech",
+      "tired": "Tired of losing your money?",
+      "description": "We combine speed, quality, and affordability to create custom solutions that empower startups and tech companies to thrive.",
+      "cards": {
+        "weRocket": {
+          "title": "We Rocket",
+          "description": "On a rush to meet your project's strict deadline?! Don't you worry at all. We're super fast on design, just start now!"
+        },
+        "competitive": {
+          "title": "Competitive Price",
+          "description": "We provide you the best price at the level of quality which cost you double anywhere else. Fair and Competitive plans."
+        },
+        "easyWork": {
+          "title": "Easy Work",
+          "description": "No Challenges in the project can stop us. We'll find a way to provide you the best. Or we make it. Let’s do it!"
+        },
+        "aceQuality": {
+          "title": "Ace Quality",
+          "description": "No matter what we do, we always provide a world-class quality product. Because you choose the best and you deserve the best."
+        },
+        "support": {
+          "title": "24/7/365 Support",
+          "description": "The essential ability to combine empathy, creativity and rationality to meet user needs and business success."
+        },
+        "unlimitedEdits": {
+          "title": "Unlimited Edits",
+          "description": "We'll never let you go unless you're happy with the result. We'll continue to revise the design until you're 100% satisfied."
+        }
+      }
+    },
+    "designPartner": {
+      "title": "The Perfect Design\nPartner, Right Here.",
+      "description": "Your search for the ideal design team ends now. Let’s create something amazing together!",
+      "taskList": {
+        "title": "Task List",
+        "list": "List",
+        "bestChoice": "Best choice",
+        "designAgency": "Design agency",
+        "fullDesignAgency": "Full design agency",
+        "designDevelop": "Design and Development Agency",
+        "more": "more"
+      },
+      "TurkeyMap": {
+        "title": "Turkey-Based, Globally Inspired.",
+        "description": "We bring a world of creativity to every project, no matter where you are."
+      }
+    },
+    "contact": {
+      "freeSpot": "2 free spot this month",
+      "title": "Let’s Make Magic\n Happen!",
+      "description": "Fill out the form below and let’s turn your next big idea into reality—together!",
+      "form": {
+        "tabs": {
+          "requestAQuote": "Request a quote",
+          "bookACall": "Book a call"
+        },
+        "contactInfo": "Contact Information",
+        "fullName": "Full name",
+        "businessEmail": "Business email",
+        "tellUs": "Tell us about your project",
+        "whatDoHelp": "What do you need help with?",
+        "budget": "Budget",
+        "checkBoxes": {
+          "productDesign": "Product design",
+          "branding": "Branding",
+          "webDesign": "Web design",
+          "development": "Development",
+          "animation": "Animation",
+          "motion": "Motion"
+        },
+        "select": "Select",
+        "sendMessage": "Send message",
+        "terms": "By clicking this button, you agree to the site's <link>Privacy Policy</link> and consent to the processing of your personal data."
+      }
+    }
+  },
+  "recentWorks": {
+    "title": "Our latest Masterpieces",
+    "description": "Discover the magic we’ve crafted lately—where creativity meets impact. See what we’ve been up to and get inspired!",
+    "seeMoreWorks": "See more works",
+    "card": {
+      "orbofiAnimation": "Orbofi Animation",
+      "client": "Client",
+      "tools": "Tools",
+      "designers": "Designers"
+    }
+  }
+}

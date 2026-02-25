@@ -1,0 +1,72 @@
+.blur-box-container {
+  bottom: 0;
+  flex: none;
+  height: 128px;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  /* position: fixed; */
+  right: 0;
+  z-index: 6;
+}
+.item-blur-4 {
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-mask: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 76%,
+      rgba(0, 0, 0, 1) 100%
+    )
+    add;
+  backdrop-filter: blur(10px);
+  background-color: #ffffff03;
+  flex: none;
+  inset: 0;
+  mask: linear-gradient(0deg, rgba(0, 0, 0, 0) 76%, rgba(0, 0, 0, 1) 100%) add;
+  overflow: hidden;
+  position: absolute;
+}
+.item-blur-3 {
+  -webkit-backdrop-filter: blur(5px);
+  -webkit-mask: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 1) 75%
+    )
+    add;
+  backdrop-filter: blur(5px);
+  background-color: #ffffff03;
+  flex: none;
+  inset: 0;
+  mask: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 75%) add;
+  overflow: hidden;
+  position: absolute;
+}
+.item-blur-2 {
+  -webkit-backdrop-filter: blur(3px);
+  -webkit-mask: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 25%,
+      rgba(0, 0, 0, 1) 50%
+    )
+    add;
+  backdrop-filter: blur(3px);
+  background-color: #ffffff03;
+  flex: none;
+  inset: 0;
+  mask: linear-gradient(0deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 50%) add;
+  overflow: hidden;
+  position: absolute;
+}
+.item-blur-1 {
+  -webkit-backdrop-filter: blur(1px);
+  -webkit-mask: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 25%)
+    add;
+  backdrop-filter: blur(1px);
+  background-color: #ffffff03;
+  flex: none;
+  inset: 0;
+  mask: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 25%) add;
+  overflow: hidden;
+  position: absolute;
+}
