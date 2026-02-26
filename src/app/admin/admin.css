@@ -1,0 +1,154 @@
+/* ACE Dashboard Styles - Custom CSS */
+
+:root {
+  --bg: #f8f7f5;
+  --surface: #ffffff;
+  --surface2: #f2f1ef;
+  --border: rgba(0,0,0,0.07);
+  --text: #1a1a1a;
+  --text-muted: rgba(26,26,26,0.45);
+  --accent: #1a1a1a;
+  --accent-fg: #ffffff;
+  --radius-lg: 32px;
+  --radius-md: 20px;
+  --shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+}
+
+/* اگر ویندوزت روی حالت Dark باشد این رنگ‌ها فعال می‌شوند */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0c0c;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --border: rgba(255,255,255,0.08);
+    --text: #eeeeee;
+    --text-muted: rgba(255,255,255,0.4);
+    --accent: #ffffff;
+    --accent-fg: #000000;
+  }
+}
+
+.admin-container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 20px;
+}
+
+.main-header {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.logo-sub {
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.main-nav {
+  display: flex;
+  background: var(--surface);
+  padding: 6px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn.active {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.works-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.layout-switch {
+  display: flex;
+  background: var(--surface2);
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.switch-btn {
+  padding: 6px 16px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.switch-btn.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.work-grid {
+  display: grid;
+  gap: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-grid.single { grid-template-columns: 1fr; }
+.work-grid.double { grid-template-columns: 1fr 1fr; }
+
+.work-card-form {
+  background: var(--surface);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.upload-zone {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: var(--surface2);
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2
+}

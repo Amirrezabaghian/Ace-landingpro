@@ -4,6 +4,16 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'vsjwshkamdyqwikinuam.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
   env: {
     NEXT_PUBLIC_EMAIL_JS_SERVICE_ID:
       process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID,
@@ -16,35 +26,25 @@ const nextConfig = {
   },
 
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find(rule =>
       rule.test?.test?.('.svg'),
     );
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
         test: /\.svg$/i,
         resourceQuery: /url/, // *.svg?url
       },
-      // Convert all other *.svg imports to React components
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        // use: [{ loader: "@svgr/webpack", options: { icon: true } }],
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, 
         use: [
           {
             loader: '@svgr/webpack',
             options: {
               icon: true,
-              // svgoConfig: {
-              //   plugins: [
-              //     { removeViewBox: false }, // Keep the viewBox attribute
-              //   ],
-              // },
-              dimensions: true, // Disable SVGR's dimension attributes
-              // Set your default width and height here
+              dimensions: true, 
               svgProps: {
                 className: 'svg-icon',
               },
@@ -54,12 +54,10 @@ const nextConfig = {
       },
     );
 
-    // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
-  // output: 'standalone',
 };
 
 export default withNextIntl(nextConfig);

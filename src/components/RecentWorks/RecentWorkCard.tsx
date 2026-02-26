@@ -1,48 +1,30 @@
 /* eslint-disable @eslint-react/no-array-index-key */
-import type { Member } from '@libs/data/members';
-import type { ImageProps, StaticImageData } from 'next/image';
-import type { CSSProperties, HTMLAttributes } from 'react';
+'use client';
 
-import AvatarGroup from '@design/Avatar/AvatarGroup';
+import type { RecentWorkCardProps } from '@components/RecentWorks/RecentWorkCard';
 import CursorBoxContent from '@design/CursorBoxContent/CursorBoxContent';
 import MotionDiv from '@design/MotionDiv/MotionDiv';
-import { NextImage } from '@design/NextImage/NextImage';
 import ToolTipBox from '@design/ToolTipBox/ToolTipBox';
 import cn from '@libs/utils/cn';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React from 'react';
 
-export interface RecentWorkCardProps extends HTMLAttributes<HTMLDivElement> {
+interface CardProps {
   multiple?: boolean;
-  bg?: CSSProperties['backgroundColor'];
-  imgClassName?: ImageProps['className'];
+  bg?: string;
+  images: any;
+  imgClassName?: string;
+  title: string;
+}
 
-  data: {
-    title: string;
-    date: string;
-    client: string;
-    images: StaticImageData[] | string[];
-    tools: string[];
-    designers: Member[];
+const Card = ({ multiple, images, title, bg, imgClassName }: CardProps) => {
+  const getImgSrc = (img: any) => {
+    if (typeof img === 'string') return img;
+    return img?.src || img;
   };
-}
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  multiple?: boolean;
-  bg?: CSSProperties['backgroundColor'];
-  images: string | StaticImageData | StaticImageData[] | string[];
-  imgClassName?: ImageProps['className'];
-}
 
-const Card = ({
-  className,
-  multiple,
-  images,
-  title,
-  bg,
-  imgClassName,
-  ...rest
-}: CardProps) => {
   return (
     <div
       style={{ backgroundColor: bg }}
@@ -51,10 +33,8 @@ const Card = ({
         {
           'pb-0 md:pb-0 pt-[25px] md:pt-[63px]': multiple,
           'py-[25px] md:py-[63px]': !multiple,
-        },
-        className,
+        }
       )}
-      {...rest}
     >
       <motion.div
         className="flex w-full items-center justify-center"
@@ -66,40 +46,49 @@ const Card = ({
         <div className="flex max-w-[90%] items-center justify-center gap-5">
           {Array.isArray(images) ? (
             images.map((img, index) => (
-              <NextImage
-                alt={title ?? ''}
-                className={cn('max-md:max-w-[40%]', imgClassName)}
-                key={`Recent_Card_IMG_${title}_${index}`}
-                src={img}
-              />
+              <div key={index} className="relative flex items-center justify-center overflow-hidden rounded-[16px]">
+                <Image
+                  alt={title ?? ''}
+                  src={getImgSrc(img)}
+                  width={1000}
+                  height={800}
+                  unoptimized={true}
+                  className={cn('h-auto w-full object-contain max-md:max-w-[100%]', imgClassName)}
+                />
+              </div>
             ))
           ) : (
-            <NextImage
-              alt={title ?? ''}
-              className={cn('max-md:max-w-[90%]', imgClassName)}
-              src={images}
-            />
-          )}{' '}
+            <div className="relative flex items-center justify-center overflow-hidden rounded-[16px]">
+              <Image
+                alt={title ?? ''}
+                src={getImgSrc(images)}
+                width={1000}
+                height={800}
+                unoptimized={true}
+                className={cn('h-auto w-full object-contain max-md:max-w-[100%]', imgClassName)}
+              />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
   );
 };
 
-const RecentWorkCard = ({
-  className,
-  multiple,
-  data,
-  ...rest
-}: RecentWorkCardProps) => {
+const RecentWorkCard = ({ className, multiple, data, ...rest }: RecentWorkCardProps) => {
   const t = useTranslations('recentWorks');
+
+  // آماده‌سازی دیتای دیزاینرها برای رندر دستی
+  const designers = data.designers?.map(d => ({
+    name: d.name,
+    // اولویت با avatar_url دیتابیس، سپس image قدیمی، و در نهایت آیکون ستاره
+    url: (d as any).avatar_url || (d as any).image || "https://img.icons8.com/fluency/48/star--v1.png"
+  }));
 
   return (
     <div className="flex w-full flex-col gap-5">
       <CursorBoxContent
-        content={
-          <ToolTipBox title={data.title} description={data.tools.join(' ')} />
-        }
+        content={<ToolTipBox title={data.title} description={data.tools?.join(' ')} />}
         followCursor="xy"
         offsetY={26}
       >
@@ -107,55 +96,84 @@ const RecentWorkCard = ({
           <div className="flex w-full flex-col gap-3 md:flex-row md:gap-5">
             {data.images.map((img, index) => (
               <Card
-                className={className}
+                title={data.title}
                 images={img}
                 key={`Recent_Card_${data.title}_${index}`}
                 multiple={multiple}
-                {...rest}
+                bg={(rest as any).bg || '#F0F0F0'}
               />
             ))}
           </div>
         ) : (
           <Card
-            className={className}
+            title={data.title}
             images={data.images.length > 1 ? data.images : data.images[0]}
             multiple={multiple}
-            {...rest}
+            bg={(rest as any).bg || '#F0F0F0'}
           />
         )}
       </CursorBoxContent>
+
       <MotionDiv className="flex w-full flex-col items-center justify-between px-3 max-sm:gap-5 sm:flex-row sm:px-6 md:px-10">
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col gap-1 text-xs">
-            <span className="text-black/40">{data.title}</span>
+            <span className="text-black/40 uppercase font-bold">{data.title}</span>
             <span className="text-black/40">{data.date}</span>
           </div>
           <div className="flex flex-col gap-1 text-xs">
-            <span className="text-black/40">{t('card.client')}</span>
+            <span className="text-black/40 uppercase font-bold">{t('card.client')}</span>
             <span className="font-medium text-black/90">{data.client}</span>
           </div>
           <div className="flex flex-col gap-1 text-xs">
-            <span className="text-black/40">{t('card.tools')}</span>
-            <div className="flex  flex-wrap gap-1">
-              {data.tools.map((tool, index) => (
-                <span
-                  className="font-medium text-black/90"
-                  key={`Recent_Card_Tool_${data.title}_${index}`}
-                >
-                  {tool}
+            <span className="text-black/40 uppercase font-bold">{t('card.tools')}</span>
+            <div className="flex flex-wrap gap-1">
+              {data.tools?.map((tool, index) => (
+                <span className="font-medium text-black/90" key={index}>
+                  {tool}{index < data.tools.length - 1 ? ', ' : ''}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-2 max-sm:hidden max-sm:w-full">
-            <p className="text-xs text-black/40">{t('card.designers')}</p>
-            <AvatarGroup avatars={data.designers} />
+          
+          {/* بخش جایگزین AvatarGroup برای نمایش صحیح عکس‌های دیتابیس */}
+          <div className="flex items-center gap-2 max-sm:hidden">
+            <p className="text-xs text-black/40 uppercase font-bold">{t('card.designers')}</p>
+            <div className="flex items-center -space-x-2">
+              {designers?.map((designer, i) => (
+                <div 
+                  key={i} 
+                  className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-gray-100 shadow-sm"
+                  title={designer.name}
+                >
+                  <Image
+                    src={typeof designer.url === 'string' ? designer.url : (designer.url as any).src}
+                    alt={designer.name || "Designer"}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* نمایش در موبایل */}
         <div className="flex items-center gap-2 max-sm:w-full max-sm:justify-between sm:hidden">
-          <p className="text-xs text-black/40">{t('card.designers')}</p>
-          <AvatarGroup avatars={data.designers} />
+          <p className="text-xs text-black/40 uppercase font-bold">{t('card.designers')}</p>
+          <div className="flex items-center -space-x-2">
+              {designers?.map((designer, i) => (
+                <div key={i} className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-white bg-gray-100 shadow-sm">
+                  <Image
+                    src={typeof designer.url === 'string' ? designer.url : (designer.url as any).src}
+                    alt={designer.name}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+          </div>
         </div>
       </MotionDiv>
     </div>

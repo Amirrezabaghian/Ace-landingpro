@@ -7,6 +7,7 @@ import BlurBox from '@design/BlurBox/BlurBox';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { usePathname } from 'next/navigation'; // اضافه شد
 
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Footer from '../Footer/Footer';
@@ -18,38 +19,39 @@ interface Props {
 
 const MainLayout = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname(); // تشخیص آدرس فعلی
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // چک کردن اینکه آیا در صفحه ادمین هستیم یا نه
+  const isAdmin = pathname.startsWith('/admin');
+
+  // اگر ادمین بودیم، فقط محتوا را بدون هدر و فوتر برگردان
+  if (isAdmin) {
+    return (
+      <>
+        <Toaster position="bottom-left" />
+        <main>{children}</main>
+      </>
+    );
+  }
+
+  // ظاهر اصلی سایت برای بقیه صفحات
   return (
     <>
       <AppLoading />
       <Toaster
         gutter={8}
         reverseOrder={false}
-        // containerClassName="!top-10"
-        containerStyle={{}}
         position="bottom-left"
         toastOptions={{
-          // Define default options
-          className: '',
-          duration: 6000,
-          removeDelay: 1000,
           style: {
-            // background: '#363636',
-            // color: '#fff',
             borderRadius: '22px',
           },
-
-          // Default options for specific types
           success: {
             duration: 6000,
-            // iconTheme: {
-            //   primary: 'green',
-            //   secondary: 'black',
-            // },
           },
         }}
       />
@@ -72,7 +74,7 @@ const MainLayout = ({ children }: Props) => {
         <Footer />
         <BurgerMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
         <BlurBox />
-      </div>{' '}
+      </div>
       <BookMeetingButton />
     </>
   );
